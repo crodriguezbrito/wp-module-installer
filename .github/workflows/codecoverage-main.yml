@@ -36,10 +36,12 @@ jobs:
           if [[ $(git branch -l gh-pages) == "" ]]; then
             gh_pages_branch_needed=true;
             echo "gh-pages branch is needed";
+            echo github.ref;
 
           else
             gh_pages_branch_needed=false;
             echo "gh-pages branch is not needed";
+            echo github.ref;
           fi
           echo "GH_PAGES_BRANCH_NEEDED=$gh_pages_branch_needed" >> $GITHUB_ENV;
           mkdir gh-pages
