@@ -1,7 +1,7 @@
 name: Codecoverage-Main
 
 # Runs PHPUnit unit and Codeception wp-browser wpunit tests, merges the code coverage, commits the html report to
-# GitHub Pages, generates a README badge with the coverage percentage..
+# GitHub Pages, generates a README badge with the coverage percentage.
 
 on:
   push:
@@ -80,7 +80,9 @@ jobs:
       - name:  Maybe create gh-pages branch
         if: ${{ env.GH_PAGES_BRANCH_NEEDED }}
         run: |
-          git checkout -b gh-pages
+          git checkout --orphan gh-pages
+          git rm -rf . || true
+          git commit --allow-empty -m "🤖 Creating gh-pages branch"
           git push origin gh-pages
 
       - name: Checkout GitHub Pages branch for code coverage report
