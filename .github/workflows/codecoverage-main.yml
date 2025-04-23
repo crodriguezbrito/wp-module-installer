@@ -64,6 +64,25 @@ jobs:
       #          allow_empty_commit: true
       #          commit_message: "🤖 Creating gh-pages branch"
 
+      - name: Check does gh-pages branch need to be created
+        run: |
+          git branch -l;
+          if [[ $(git branch -l gh-pages) == "" ]]; then
+            gh_pages_branch_needed=true;
+            echo "gh-pages branch is needed";
+          else
+            gh_pages_branch_needed=false
+            echo "gh-pages branch already exists";
+          fi
+          echo "GH_PAGES_BRANCH_NEEDED=$gh_pages_branch_needed" >> $GITHUB_ENV;
+          mkdir gh-pages
+
+      - name:  Maybe create gh-pages branch
+        if: ${{ env.GH_PAGES_BRANCH_NEEDED }}
+        run: |
+          git checkout -b gh-pages
+          git push origin gh-pages
+
       - name: Checkout GitHub Pages branch for code coverage report
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
