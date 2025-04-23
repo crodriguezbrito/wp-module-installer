@@ -9,7 +9,7 @@ use NewfoldLabs\WP\Module\Installer\WPCLI\WPCLI;
 use NewfoldLabs\WP\ModuleLoader\Container;
 
 /**
- * The Module's main class.
+ * The Module's main class....
  */
 class Installer {
 
