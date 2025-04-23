@@ -77,6 +77,10 @@ jobs:
           echo "GH_PAGES_BRANCH_NEEDED=$gh_pages_branch_needed" >> $GITHUB_ENV;
           mkdir gh-pages
 
+      - name: Configure Git with github-actions bot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
       - name:  Maybe create gh-pages branch
         if: ${{ env.GH_PAGES_BRANCH_NEEDED }}
         run: |
