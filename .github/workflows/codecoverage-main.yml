@@ -86,7 +86,7 @@ jobs:
         if: ${{ env.GH_PAGES_BRANCH_NEEDED && (matrix.php == '7.3') }}
         run: |
           git checkout --orphan gh-pages
-        
+
       - name: Checkout GitHub Pages branch for code coverage report
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
