@@ -82,7 +82,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
       - name:  Maybe create gh-pages branch
-        if: ${{ env.GH_PAGES_BRANCH_NEEDED }}
+        if: ${{ env.GH_PAGES_BRANCH_NEEDED && (matrix.php == '7.3') }}
         run: |
           git checkout --orphan gh-pages
           git rm -rf . || true
