@@ -78,6 +78,7 @@ jobs:
           mkdir gh-pages
 
       - name: Configure Git with github-actions bot
+        if: ${{ env.GH_PAGES_BRANCH_NEEDED && (matrix.php == '7.3') }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
